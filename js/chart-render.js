@@ -68,6 +68,8 @@ function drawChart(years, data1, data2, data3) {
       ],
     },
     options: {
+      responsive: true,
+      responsiveAnimationDuration: 500,
       scales: {
         yAxes: [
           {
