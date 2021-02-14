@@ -1,7 +1,7 @@
 const ctx = document.querySelector('.js-chart').getContext('2d');
 const GLOBAL_MEAN_TEMPERATURE = 14;
 const webUrl =
-  'https://data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
+  'https://cors-anywhere.herokuapp.com/data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
 const localUrl = './data/ZonAnn.Ts+dSST.csv';
 
 fetchData()
@@ -12,7 +12,7 @@ fetchData()
   );
 
 function fetchData() {
-  return fetch(localUrl).then(response => response.text());
+  return fetch(webUrl).then(response => response.text());
 }
 
 function parsedData(data) {
