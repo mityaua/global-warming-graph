@@ -12,7 +12,7 @@ fetchData()
   );
 
 function fetchData() {
-  return fetch(localUrl).then(response => response.text());
+  return fetch(webUrl).then(response => response.text());
 }
 
 function parsedData(data) {
