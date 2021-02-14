@@ -12,9 +12,7 @@ fetchData()
   );
 
 function fetchData() {
-  return fetch(webUrl, {
-    mode: 'no-cors',
-  }).then(response => response.text());
+  return fetch(localUrl).then(response => response.text());
 }
 
 function parsedData(data) {
