@@ -9,10 +9,13 @@ fetchData()
   .then(getLabelandData)
   .then(({ years, globalTemps, northTemps, southTemps }) =>
     drawChart(years, globalTemps, northTemps, southTemps),
-  );
+  )
+  .catch(error => console.log(error));
 
 function fetchData() {
-  return fetch(webUrl).then(response => response.text());
+  return fetch(webUrl)
+    .then(response => response.text())
+    .catch(error => error);
 }
 
 function parsedData(data) {
