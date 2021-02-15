@@ -1,8 +1,11 @@
+import Papa from 'papaparse';
+import Chart from 'chart.js';
+
+import localUrl from '../data/ZonAnn.Ts+dSST.csv';
+
 const ctx = document.querySelector('.js-chart').getContext('2d');
 const GLOBAL_MEAN_TEMPERATURE = 14;
-const webUrl =
-  'https://cors-anywhere.herokuapp.com/data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
-const localUrl = './data/ZonAnn.Ts+dSST.csv';
+// const webUrl = 'https://cors-anywhere.herokuapp.com/data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
 
 fetchData()
   .then(parsedData)
@@ -33,13 +36,10 @@ function getLabelandData(data) {
     },
     { years: [], globalTemps: [], northTemps: [], southTemps: [] },
   );
-
-  // const years = parsedData.map((entry) => entry.Year);
-  // const temps = parsedData.map((entry) => Number(entry.Glob) + GLOBAL_MEAN_TEMPERATURE);
 }
 
 function drawChart(years, data1, data2, data3) {
-  const myChart = new Chart(ctx, {
+  new Chart(ctx, {
     type: 'line',
     data: {
       labels: years,
