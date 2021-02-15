@@ -117,108 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"data/ZonAnn.Ts+dSST.csv":[function(require,module,exports) {
-module.exports = "/ZonAnn.Ts+dSST.2b71855d.csv";
-},{}],"js/chart-render.js":[function(require,module,exports) {
-"use strict";
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-var _ZonAnnTsDSST = _interopRequireDefault(require("../data/ZonAnn.Ts+dSST.csv"));
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ctx = document.querySelector('.js-chart').getContext('2d');
-var GLOBAL_MEAN_TEMPERATURE = 14; // const webUrl = 'https://cors-anywhere.herokuapp.com/data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
-
-fetchData().then(parsedData).then(getLabelandData).then(function (_ref) {
-  var years = _ref.years,
-      globalTemps = _ref.globalTemps,
-      northTemps = _ref.northTemps,
-      southTemps = _ref.southTemps;
-  return drawChart(years, globalTemps, northTemps, southTemps);
-}).catch(function (error) {
-  return console.log(error);
-});
-
-function fetchData() {
-  return fetch(_ZonAnnTsDSST.default).then(function (response) {
-    return response.text();
-  }).catch(function (error) {
-    return error;
-  });
+  return bundleURL;
 }
 
-function parsedData(data) {
-  return Papa.parse(data, {
-    header: true
-  }).data;
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
 }
 
-function getLabelandData(data) {
-  return data.reduce(function (acc, entry) {
-    acc.years.push(entry.Year);
-    acc.globalTemps.push(Number(entry.Glob) + GLOBAL_MEAN_TEMPERATURE);
-    acc.northTemps.push(Number(entry.NHem) + GLOBAL_MEAN_TEMPERATURE);
-    acc.southTemps.push(Number(entry.SHem) + GLOBAL_MEAN_TEMPERATURE);
-    return acc;
-  }, {
-    years: [],
-    globalTemps: [],
-    northTemps: [],
-    southTemps: []
-  });
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
 }
 
-function drawChart(years, data1, data2, data3) {
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: years,
-      datasets: [{
-        label: '# Global average temperature',
-        data: data1,
-        backgroundColor: '#EF476F',
-        borderColor: '#EF476F',
-        borderWidth: 1,
-        fill: false
-      }, {
-        label: '# Northern hemisphere average temperature',
-        data: data2,
-        backgroundColor: '#118AB2',
-        borderColor: '#118AB2',
-        borderWidth: 1,
-        fill: false
-      }, {
-        label: '# Southern hemisphere average temperature',
-        data: data3,
-        backgroundColor: '#FFD166',
-        borderColor: '#FFD166',
-        borderWidth: 1,
-        fill: false
-      }]
-    },
-    options: {
-      responsive: true,
-      responsiveAnimationDuration: 500,
-      scales: {
-        yAxes: [{
-          ticks: {
-            callback: function callback(value) {
-              return value + '°';
-            }
-          }
-        }],
-        xAxes: [{
-          ticks: {
-            callback: function callback(value) {
-              return value + '';
-            }
-          }
-        }]
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
       }
     }
-  });
+
+    cssTimeout = null;
+  }, 50);
 }
-},{"../data/ZonAnn.Ts+dSST.csv":"data/ZonAnn.Ts+dSST.csv"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/normalize.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -422,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/chart-render.js"], null)
-//# sourceMappingURL=/chart-render.239865c7.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/normalize.1114379f.js.map
