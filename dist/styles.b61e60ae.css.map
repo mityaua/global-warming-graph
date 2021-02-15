@@ -1,1 +1,0 @@
-{"version":3,"sources":["css/styles.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"styles.b61e60ae.css","sourceRoot":"..","sourcesContent":[".chart-container {\r\n  width: 85vw;\r\n\r\n  margin: 20px auto;\r\n\r\n  border: 1px solid #9c9c9c\r\n}\r\n"]}
