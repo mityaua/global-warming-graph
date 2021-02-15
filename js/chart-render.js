@@ -13,7 +13,7 @@ fetchData()
   .catch(error => console.log(error));
 
 function fetchData() {
-  return fetch(webUrl)
+  return fetch(localUrl)
     .then(response => response.text())
     .catch(error => error);
 }
