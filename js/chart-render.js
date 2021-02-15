@@ -1,6 +1,3 @@
-import Papa from 'papaparse';
-import Chart from 'chart.js';
-
 import localUrl from '../data/ZonAnn.Ts+dSST.csv';
 
 const ctx = document.querySelector('.js-chart').getContext('2d');
