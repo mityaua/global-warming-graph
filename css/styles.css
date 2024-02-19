@@ -7,8 +7,7 @@ canvas {
 }
 
 .chart-container {
-  display: flex;
-  justify-content: center;
-  height: 90vh;
-  width: 90vw;
+  width: 80vw;
+
+  margin: 0 auto;
 }
