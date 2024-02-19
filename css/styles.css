@@ -1,7 +1,14 @@
+body {
+  padding: 16px;
+}
+
+canvas {
+  border: 1px solid #d3d2d2;
+}
+
 .chart-container {
-  width: 85vw;
-
-  margin: 20px auto;
-
-  border: 1px solid #9c9c9c;
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  width: 90vw;
 }

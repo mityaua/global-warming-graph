@@ -1,6 +1,5 @@
 const GLOBAL_MEAN_TEMPERATURE = 14;
 const localUrl = './data/ZonAnn.Ts+dSST.csv';
-// const webUrl = 'https://cors-anywhere.herokuapp.com/data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
 
 export function fetchData() {
   return fetch(localUrl)
@@ -12,7 +11,7 @@ export function parsedData(data) {
   return Papa.parse(data, { header: true }).data;
 }
 
-export function getLabelandData(data) {
+export function getLabelAndData(data) {
   return data.reduce(
     (acc, entry) => {
       acc.years.push(entry.Year);

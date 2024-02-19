@@ -1,11 +1,10 @@
-import { fetchData, parsedData, getLabelandData } from './api.js';
-import "./plugins/Chart.min.js";
+import { fetchData, parsedData, getLabelAndData } from './api.js';
 
 const ctx = document.querySelector('.js-chart').getContext('2d');
 
 fetchData()
   .then(parsedData)
-  .then(getLabelandData)
+  .then(getLabelAndData)
   .then(({ years, globalTemps, northTemps, southTemps }) =>
     drawChart(years, globalTemps, northTemps, southTemps),
   )
@@ -47,24 +46,16 @@ function drawChart(years, data1, data2, data3) {
       responsive: true,
       responsiveAnimationDuration: 500,
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              callback: function (value) {
-                return value + '°';
-              },
+        y: {
+          ticks: {
+            callback: function (value) {
+              return value + '°';
             },
           },
-        ],
-        xAxes: [
-          {
-            ticks: {
-              callback: function (value) {
-                return value + '';
-              },
-            },
-          },
-        ],
+        },
+        x: {
+          max: '2023',
+        },
       },
     },
   });
