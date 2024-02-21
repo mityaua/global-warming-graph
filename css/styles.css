@@ -7,7 +7,8 @@ canvas {
 }
 
 .chart-container {
-  width: 80vw;
-
-  margin: 0 auto;
+  position: relative;
+  margin: auto;
+  height: 80vh;
+  width: 95vw;
 }
