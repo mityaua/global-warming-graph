@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Global Warming Graph - ChartJS</title>
     <meta
       name="description"
       content="Global Warming Graph: average temperature"
     />
+
     <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/styles.css" />
@@ -16,10 +18,21 @@
   <body>
     <section class="chart-container">
       <canvas class="js-chart"></canvas>
+
+      <fieldset>
+        <legend>Theme</legend>
+        <input type="radio" id="auto" name="mode" value="auto" checked />
+        <label for="auto">Auto</label>
+        <input type="radio" id="light" name="mode" value="light" />
+        <label for="light">Light</label>
+        <input type="radio" id="dark" name="mode" value="dark" />
+        <label for="dark">Dark</label>
+      </fieldset>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <script src="./js/plugins/papaparse.min.js"></script>
     <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/theme.js"></script>
   </body>
 </html>
